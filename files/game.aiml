@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
-	<!-- insert your AIML categories here -->
-</aiml>
+<category>
+  <pattern>JUGAR</pattern>
+  <template>
+    ¡Vamos a jugar a Piedra, Papel, Tijeras, Lagarto, Spock! Escribe tu movimiento.
+  </template>
+</category>
+
+<category>
+  <pattern><set>moves</set></pattern>
+  <template>
+    <think><set name="user_move"><star/></set></think>
+    Elegiste <star/>. Yo elijo:
+    <random>
+      <li>piedra</li>
+      <li>papel</li>
+      <li>tijeras</li>
+      <li>lagarto</li>
+      <li>spock</li>
+    </random>.
+    <think><set name="bot_move"><star/></set></think>
+    <condition name="user_move" value="piedra">
+      <condition name="bot_move" value="tijeras">
+        ¡Piedra aplasta Tijeras! Tú ganas.
+      </condition>
+      <condition name="bot_move" value="lagarto">
+        ¡Piedra aplasta Lagarto! Tú ganas.
+      </condition>
+      <condition>...otros casos...</condition>
+    </condition>
+    ...otros movimientos...
+  </template>
+</category></aiml>
